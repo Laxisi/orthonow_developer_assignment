@@ -6,6 +6,8 @@
 <title>Book a Consultation - OrthoNow</title>
 
 <style>
+  /* Using a basic color scheme - blue for trust, orange for the button to make it stand out */
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,6 +25,7 @@
     padding: 20px;
   }
 
+  /* Header */
   .header {
     background-color: #1a4d8f;
     color: white;
@@ -34,6 +37,7 @@
     font-size: 20px;
   }
 
+  /* Hero section */
   .hero {
     text-align: center;
     padding: 30px 20px 10px;
@@ -50,6 +54,24 @@
     color: #555;
     margin-bottom: 20px;
   }
+
+  /* Trust badges */
+  .trust-box {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #444;
+  }
+
+  .trust-box strong {
+    color: #1a4d8f;
+  }
+
+  /* Form */
   .form-box {
     background-color: white;
     border: 1px solid #ddd;
@@ -90,7 +112,7 @@
 
   button.submit-btn {
     width: 100%;
-    background-color: #007bff;
+    background-color: #e8762c;
     color: white;
     border: none;
     padding: 14px;
@@ -101,8 +123,10 @@
   }
 
   button.submit-btn:hover {
-    background-color: #0056b3;
+    background-color: #cc6420;
   }
+
+  /* Thank you message */
   .thank-you-box {
     display: none;
     background-color: #e8f5e9;
@@ -123,6 +147,8 @@
     color: #888;
     padding: 20px;
   }
+
+  /* Mobile responsiveness - on small screens reduce font sizes a bit */
   @media (max-width: 480px) {
     .hero h1 {
       font-size: 22px;
@@ -133,15 +159,21 @@
 <body>
 
 <div class="header">
-  <h2>OrthoNow</h2>
+  <h2>OrthoNow Clinics</h2>
 </div>
 
 <div class="container">
 
   <div class="hero">
-    <h1>Book Your Appointment</h1>
-    <p>Fill in your details and our team will contact you to schedule an appointment</p>
+    <h1>Get an Expert Orthopaedic Opinion</h1>
+    <p>Book your consultation at OrthoNow and get your knee or back pain checked by a specialist.</p>
   </div>
+
+  <div class="trust-box">
+    <strong>9 Clinics</strong> across Bengaluru, Hyderabad &amp; Chennai &nbsp;|&nbsp; Trusted by <strong>40,000+ patients</strong>
+  </div>
+
+  <!-- Booking Form -->
   <div class="form-box" id="formBox">
     <h3>Book Your Consultation</h3>
     <form id="bookingForm">
@@ -166,10 +198,11 @@
 </div>
 
 <footer>
-  &copy; 2026 Appointment booking
+  &copy; 2026 OrthoNow Clinics
 </footer>
 
 <script>
+  // Get all the elements we need
   var form = document.getElementById("bookingForm");
   var nameInput = document.getElementById("nameInput");
   var phoneInput = document.getElementById("phoneInput");
@@ -178,19 +211,23 @@
   var formBox = document.getElementById("formBox");
   var thankYouBox = document.getElementById("thankYouBox");
 
+  // Make sure dataLayer exists (this is needed for GTM tracking)
   window.dataLayer = window.dataLayer || [];
 
+  // Only allow numbers in the phone field
   phoneInput.addEventListener("input", function () {
     phoneInput.value = phoneInput.value.replace(/[^0-9]/g, "");
   });
 
   form.addEventListener("submit", function (event) {
+    // Stop the form from reloading the page (default browser behavior)
     event.preventDefault();
 
     var nameValue = nameInput.value.trim();
     var phoneValue = phoneInput.value.trim();
     var isValid = true;
 
+    // Check name is not empty
     if (nameValue === "") {
       nameError.style.display = "block";
       isValid = false;
@@ -198,6 +235,7 @@
       nameError.style.display = "none";
     }
 
+    // Check phone is exactly 10 digits
     if (phoneValue.length !== 10) {
       phoneError.style.display = "block";
       isValid = false;
@@ -205,16 +243,19 @@
       phoneError.style.display = "none";
     }
 
+    // If something is wrong, don't submit
     if (!isValid) {
       return;
     }
 
+    // Push the event to dataLayer so GTM can pick it up
     window.dataLayer.push({
       event: "consultation_form_submitted",
       lead_name: nameValue,
       lead_phone: phoneValue
     });
 
+    // Hide the form and show the thank you message (no page reload)
     formBox.style.display = "none";
     thankYouBox.style.display = "block";
   });
