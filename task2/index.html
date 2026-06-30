@@ -6,7 +6,6 @@
 <title>Book a Consultation - OrthoNow</title>
 
 <style>
-  /* Using a basic color scheme - blue for trust, orange for the button to make it stand out */
   * {
     margin: 0;
     padding: 0;
@@ -148,7 +147,6 @@
     padding: 20px;
   }
 
-  /* Mobile responsiveness - on small screens reduce font sizes a bit */
   @media (max-width: 480px) {
     .hero h1 {
       font-size: 22px;
@@ -159,7 +157,7 @@
 <body>
 
 <div class="header">
-  <h2>OrthoNow Clinics</h2>
+  <h2>OrthoNow </h2>
 </div>
 
 <div class="container">
@@ -170,7 +168,7 @@
   </div>
 
   <div class="trust-box">
-    <strong>9 Clinics</strong> across Bengaluru, Hyderabad &amp; Chennai &nbsp;|&nbsp; Trusted by <strong>40,000+ patients</strong>
+    <strong>9 Clinics</strong> across Bengaluru, Hyderabad &amp; Chennai <strong></strong>
   </div>
 
   <!-- Booking Form -->
@@ -189,7 +187,7 @@
     </form>
   </div>
 
-  <!-- Thank you message shown after form submit -->
+  <!-- Thank you after form submit -->
   <div class="thank-you-box" id="thankYouBox">
     <h3>Thank You!</h3>
     <p>We have received your request. Our team will call you shortly to confirm your appointment.</p>
@@ -198,11 +196,10 @@
 </div>
 
 <footer>
-  &copy; 2026 OrthoNow Clinics
+  &copy; 2026 OrthoNow
 </footer>
 
 <script>
-  // Get all the elements we need
   var form = document.getElementById("bookingForm");
   var nameInput = document.getElementById("nameInput");
   var phoneInput = document.getElementById("phoneInput");
@@ -243,19 +240,18 @@
       phoneError.style.display = "none";
     }
 
-    // If something is wrong, don't submit
     if (!isValid) {
       return;
     }
 
-    // Push the event to dataLayer so GTM can pick it up
+    // Pushing the event to dataLayer so GTM can pick it up
     window.dataLayer.push({
       event: "consultation_form_submitted",
       lead_name: nameValue,
       lead_phone: phoneValue
     });
 
-    // Hide the form and show the thank you message (no page reload)
+    // Hide the form and show the thank you message
     formBox.style.display = "none";
     thankYouBox.style.display = "block";
   });
