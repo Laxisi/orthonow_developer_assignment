@@ -8,8 +8,8 @@ This repo contains my submission for the Developer Assignment.
 
 ## How to test the landing page
 
-1. Open "task2/index.html" in any browser.
+1. Open `task2/index.html` in any browser.
 2. Open the browser console (right click > Inspect > Console tab).
 3. Fill in the name and a 10-digit phone number, then click "Book Consultation".
-4. Type "dataLayer" in the console and press Enter, you should see the event that was pushed.
+4. Type `dataLayer` in the console and press Enter, you should see the event that was pushed.
 5. The page will show a thank-you message without reloading.
